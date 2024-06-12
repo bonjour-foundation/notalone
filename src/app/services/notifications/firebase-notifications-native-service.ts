@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
-import {Platform} from '@ionic/angular';
+import { Injectable } from '@angular/core';
+import { Platform } from '@ionic/angular';
 
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
-import {Firebase} from '@ionic-native/firebase/ngx';
+import { Firebase } from '@awesome-cordova-plugins/firebase/ngx';
 
 // Services
-import {FirebaseNotificationsTokenService} from './firebase-notifications-token-service';
+import { FirebaseNotificationsTokenService } from './firebase-notifications-token-service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,8 +16,8 @@ export class FirebaseNotificationsNativeService {
     private refreshSubscription: Subscription;
 
     constructor(private platform: Platform,
-                private firebase: Firebase,
-                private firebaseNotificationsTokenService: FirebaseNotificationsTokenService) {
+        private firebase: Firebase,
+        private firebaseNotificationsTokenService: FirebaseNotificationsTokenService) {
     }
 
 

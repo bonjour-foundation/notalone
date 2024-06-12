@@ -1,26 +1,26 @@
-import {MenuController, NavController, Platform, ToastController} from '@ionic/angular';
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import { MenuController, NavController, Platform, ToastController } from '@ionic/angular';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
-import {Storage} from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
-import {StatusBar} from '@ionic-native/status-bar/ngx';
+import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 // Services
-import {Comparator} from './services/utils/utils';
-import {ShareService} from './services/share/share.service';
-import {IntroService} from './services/intro/intro.service';
-import {SessionService} from './services/session/session.service';
-import {AuthenticationService} from './services/auth/authentication.service';
-import {UserCircleService} from './services/user-circle/user-circle.service';
-import {ErrorService} from './services/error/error.service';
-import {FirebaseNotificationsService} from './services/notifications/firebase-notifications-service';
+import { Comparator } from './services/utils/utils';
+import { ShareService } from './services/share/share.service';
+import { IntroService } from './services/intro/intro.service';
+import { SessionService } from './services/session/session.service';
+import { AuthenticationService } from './services/auth/authentication.service';
+import { UserCircleService } from './services/user-circle/user-circle.service';
+import { ErrorService } from './services/error/error.service';
+import { FirebaseNotificationsService } from './services/notifications/firebase-notifications-service';
 
-import {environment} from '../environments/environment';
+import { environment } from '../environments/environment';
 
 interface DeeplinkMatch {
     $invite: string;

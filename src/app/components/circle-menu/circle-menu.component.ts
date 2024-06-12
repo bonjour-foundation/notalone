@@ -1,17 +1,17 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import {InAppBrowser} from '@ionic-native/in-app-browser/ngx';
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 // User
-import {User} from '../../model/user';
+import { User } from '../../model/user';
 
 // Services
-import {UserService} from '../../services/user/user.service';
-import {SessionService} from '../../services/session/session.service';
+import { UserService } from '../../services/user/user.service';
+import { SessionService } from '../../services/session/session.service';
 
 @Component({
     selector: 'app-circle-menu',
@@ -33,9 +33,9 @@ export class CircleMenuComponent implements OnInit, OnDestroy {
     private sessionUser: User;
 
     constructor(private userService: UserService,
-                private sessionService: SessionService,
-                private translateService: TranslateService,
-                private inAppBrowser: InAppBrowser) {
+        private sessionService: SessionService,
+        private translateService: TranslateService,
+        private inAppBrowser: InAppBrowser) {
 
     }
 

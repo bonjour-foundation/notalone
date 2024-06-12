@@ -1,37 +1,37 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {NavController, Platform} from '@ionic/angular';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NavController, Platform } from '@ionic/angular';
 
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
-import {GooglePlus} from '@ionic-native/google-plus/ngx';
-import {InAppBrowser} from '@ionic-native/in-app-browser/ngx';
+import { GooglePlus } from '@awesome-cordova-plugins/google-plus/ngx';
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import * as firebase from 'firebase/app';
 import '@firebase/auth';
-import {User as FirebaseUser} from 'firebase';
+import { User as FirebaseUser } from 'firebase';
 
-import {AngularFireAuth} from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 
-import {filter, take} from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 
 // Utils
-import {Resources} from '../../../services/utils/resources';
-import {environment} from '../../../../environments/environment';
+import { Resources } from '../../../services/utils/resources';
+import { environment } from '../../../../environments/environment';
 
 // Model
-import {User} from '../../../model/user';
+import { User } from '../../../model/user';
 
 // Services
-import {GoogleAnalyticsService} from '../../../services/analytics/google-analytics-service';
-import {ErrorService} from '../../../services/error/error.service';
-import {AuthenticationService} from '../../../services/auth/authentication.service';
-import {SessionService} from '../../../services/session/session.service';
-import {TipsService} from '../../../services/tips/tips.service';
-import {CircleStateService} from '../../../services/circle/circle-state.service';
-import {ShareService} from '../../../services/share/share.service';
+import { GoogleAnalyticsService } from '../../../services/analytics/google-analytics-service';
+import { ErrorService } from '../../../services/error/error.service';
+import { AuthenticationService } from '../../../services/auth/authentication.service';
+import { SessionService } from '../../../services/session/session.service';
+import { TipsService } from '../../../services/tips/tips.service';
+import { CircleStateService } from '../../../services/circle/circle-state.service';
+import { ShareService } from '../../../services/share/share.service';
 
 interface GooglePlusUser {
     idToken: string;
@@ -52,19 +52,19 @@ export class SignInPage implements OnInit, OnDestroy {
     signInProcessing = true;
 
     constructor(private platform: Platform,
-                private navController: NavController,
-                private activatedRoute: ActivatedRoute,
-                private inAppBrowser: InAppBrowser,
-                private translateService: TranslateService,
-                private googleAnalyticsService: GoogleAnalyticsService,
-                private angularFireAuth: AngularFireAuth,
-                private googlePlus: GooglePlus,
-                private errorService: ErrorService,
-                private authenticationService: AuthenticationService,
-                private sessionService: SessionService,
-                private tipsService: TipsService,
-                private circleStateService: CircleStateService,
-                private shareService: ShareService) {
+        private navController: NavController,
+        private activatedRoute: ActivatedRoute,
+        private inAppBrowser: InAppBrowser,
+        private translateService: TranslateService,
+        private googleAnalyticsService: GoogleAnalyticsService,
+        private angularFireAuth: AngularFireAuth,
+        private googlePlus: GooglePlus,
+        private errorService: ErrorService,
+        private authenticationService: AuthenticationService,
+        private sessionService: SessionService,
+        private tipsService: TipsService,
+        private circleStateService: CircleStateService,
+        private shareService: ShareService) {
 
     }
 
@@ -108,9 +108,9 @@ export class SignInPage implements OnInit, OnDestroy {
                 await this.shareService.retrieveShareHashId();
 
                 if (user) {
-                    await this.navController.navigateRoot('/home', {animated: true});
+                    await this.navController.navigateRoot('/home', { animated: true });
                 } else {
-                    await this.navController.navigateForward(['/create-user', this.centerUser], {animated: true});
+                    await this.navController.navigateForward(['/create-user', this.centerUser], { animated: true });
                 }
             });
         });
@@ -133,7 +133,7 @@ export class SignInPage implements OnInit, OnDestroy {
             this.authSubscription.unsubscribe();
         }
 
-        await this.navController.navigateForward(['/create-email', this.centerUser], {animated: true});
+        await this.navController.navigateForward(['/create-email', this.centerUser], { animated: true });
     }
 
     private async googleLoginNative() {

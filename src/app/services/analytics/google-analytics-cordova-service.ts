@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {Platform} from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 
-import {Firebase} from '@ionic-native/firebase/ngx';
+import { Firebase } from '@awesome-cordova-plugins/firebase/ngx';
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +10,7 @@ import {Firebase} from '@ionic-native/firebase/ngx';
 export class GoogleAnalyticsCordovaService {
 
     constructor(private platform: Platform,
-                private firebase: Firebase) {
+        private firebase: Firebase) {
 
     }
 
@@ -27,7 +27,7 @@ export class GoogleAnalyticsCordovaService {
     async trackEvent(category: string, action: string): Promise<void> {
         return new Promise<void>((resolve) => {
             this.platform.ready().then(async () => {
-                await this.firebase.logEvent(category, {action});
+                await this.firebase.logEvent(category, { action });
 
                 resolve();
             });

@@ -40,3 +40,6 @@ google-services.json
 GoogleService-Info.plist
 build.json
 .env
+
+#Angular
+.angular

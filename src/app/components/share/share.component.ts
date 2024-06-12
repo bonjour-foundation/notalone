@@ -1,20 +1,20 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {Platform, ToastController} from '@ionic/angular';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Platform, ToastController } from '@ionic/angular';
 
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
-import {SocialSharing} from '@ionic-native/social-sharing/ngx';
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 
-import {environment} from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
-import {ShareService} from '../../services/share/share.service';
+import { ShareService } from '../../services/share/share.service';
 
-import {Resources} from '../../services/utils/resources';
+import { Resources } from '../../services/utils/resources';
 
-import {GoogleAnalyticsService} from '../../services/analytics/google-analytics-service';
-import {ErrorService} from '../../services/error/error.service';
+import { GoogleAnalyticsService } from '../../services/analytics/google-analytics-service';
+import { ErrorService } from '../../services/error/error.service';
 
 @Component({
     selector: 'app-share',
@@ -32,12 +32,12 @@ export class ShareComponent implements OnInit, OnDestroy {
     pwaShareOptions: any;
 
     constructor(private platform: Platform,
-                private toastController: ToastController,
-                private translateService: TranslateService,
-                private socialSharing: SocialSharing,
-                private shareService: ShareService,
-                private googleAnalyticsService: GoogleAnalyticsService,
-                private errorService: ErrorService) {
+        private toastController: ToastController,
+        private translateService: TranslateService,
+        private socialSharing: SocialSharing,
+        private shareService: ShareService,
+        private googleAnalyticsService: GoogleAnalyticsService,
+        private errorService: ErrorService) {
 
     }
 
@@ -77,7 +77,7 @@ export class ShareComponent implements OnInit, OnDestroy {
         return new Promise<void>((resolve) => {
             const shareUrl = `${Resources.Constants.BRANCH.URL}${shareId}`;
 
-            const text: string = this.translateService.instant('SHARE_CIRCLE.CONTENT.TEXT_WITH_URL', {url: shareUrl});
+            const text: string = this.translateService.instant('SHARE_CIRCLE.CONTENT.TEXT_WITH_URL', { url: shareUrl });
             const title: string = this.translateService.instant('SHARE_CIRCLE.CONTENT.TITLE');
 
             window.location.href = `mailto:?subject=${title}&body=${text}`;
@@ -89,7 +89,7 @@ export class ShareComponent implements OnInit, OnDestroy {
     private presentCordovaShare(shareId: string): Promise<void> {
         const shareUrl = `${Resources.Constants.BRANCH.URL}${shareId}`;
 
-        const text: string = this.translateService.instant('SHARE_CIRCLE.CONTENT.TEXT_WITH_URL', {url: shareUrl});
+        const text: string = this.translateService.instant('SHARE_CIRCLE.CONTENT.TEXT_WITH_URL', { url: shareUrl });
         const title: string = this.translateService.instant('SHARE_CIRCLE.CONTENT.TITLE');
 
         return this.socialSharing.share(text, title);
@@ -118,7 +118,7 @@ export class ShareComponent implements OnInit, OnDestroy {
     private presentPWADesktopShare(shareId: string): Promise<void> {
         return new Promise<void>((resolve) => {
             const shareUrl = `${Resources.Constants.BRANCH.URL}${shareId}`;
-            const body: string = this.translateService.instant('SHARE_CIRCLE.CONTENT.TEXT_WITH_URL', {url: shareUrl});
+            const body: string = this.translateService.instant('SHARE_CIRCLE.CONTENT.TEXT_WITH_URL', { url: shareUrl });
 
             this.pwaShareOptions = {
                 displayNames: true,
