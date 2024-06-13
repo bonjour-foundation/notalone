@@ -1,25 +1,25 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 
-import {User as FirebaseUser} from 'firebase';
+import { User as FirebaseUser } from 'firebase/auth';
 
-import {Observable, ReplaySubject, Subscription} from 'rxjs';
-import {take} from 'rxjs/operators';
+import { Observable, ReplaySubject, Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 import '@firebase/firestore';
 
-import {Storage} from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
 // Model
-import {User, UserData} from '../../model/user';
+import { User, UserData } from '../../model/user';
 
 // Utils
-import {Comparator} from '../utils/utils';
+import { Comparator } from '../utils/utils';
 
 // Services
-import {FirebaseNotificationsTokenService} from '../notifications/firebase-notifications-token-service';
+import { FirebaseNotificationsTokenService } from '../notifications/firebase-notifications-token-service';
 
 @Injectable({
     providedIn: 'root'
@@ -36,8 +36,8 @@ export class SessionService {
     private userSubject: ReplaySubject<User> = new ReplaySubject(1);
 
     constructor(private storage: Storage,
-                private fireStore: AngularFirestore,
-                private firebaseNotificationsTokenService: FirebaseNotificationsTokenService) {
+        private fireStore: AngularFirestore,
+        private firebaseNotificationsTokenService: FirebaseNotificationsTokenService) {
         this.collection = this.fireStore.collection<UserData>('users');
     }
 
@@ -153,8 +153,8 @@ export class SessionService {
                     push: {
                         fcm_token: token
                     },
-                    updated_at: firebase.firestore.Timestamp.now()
-                }, {merge: true}).then(() => {
+                    updated_at: firebase.default.firestore.Timestamp.now()
+                }, { merge: true }).then(() => {
                     resolve();
                 }, (err) => {
                     reject(err);
@@ -182,8 +182,8 @@ export class SessionService {
                     push: {
                         enabled: enable
                     },
-                    updated_at: firebase.firestore.Timestamp.now()
-                }, {merge: true}).then(() => {
+                    updated_at: firebase.default.firestore.Timestamp.now()
+                }, { merge: true }).then(() => {
                     resolve();
                 }, (err) => {
                     reject(err);

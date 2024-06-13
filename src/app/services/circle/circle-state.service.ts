@@ -1,18 +1,18 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
 
-import {Storage} from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 import '@firebase/firestore';
 
-import {CircleRequestType, CircleState, CircleStateData, CircleStateDealWith, CircleStateType} from '../../model/circle-state';
+import { CircleRequestType, CircleState, CircleStateData, CircleStateDealWith, CircleStateType } from '../../model/circle-state';
 
-import {Converter} from '../utils/utils';
+import { Converter } from '../utils/utils';
 
 interface TodayState {
     todayState: CircleStateType;
@@ -28,7 +28,7 @@ export class CircleStateService {
     todayRequestType: CircleRequestType;
 
     constructor(private fireStore: AngularFirestore,
-                private storage: Storage) {
+        private storage: Storage) {
     }
 
     findTodayState(circleId: string): Observable<CircleState[]> {
@@ -37,8 +37,8 @@ export class CircleStateService {
         const start: Date = Converter.startOfDay(new Date());
         const end: Date = Converter.endOfDay(new Date());
 
-        const startTimestamp: firebase.firestore.Timestamp = firebase.firestore.Timestamp.fromDate(start);
-        const endTimestamp: firebase.firestore.Timestamp = firebase.firestore.Timestamp.fromDate(end);
+        const startTimestamp: firebase.default.firestore.Timestamp = firebase.default.firestore.Timestamp.fromDate(start);
+        const endTimestamp: firebase.default.firestore.Timestamp = firebase.default.firestore.Timestamp.fromDate(end);
 
         const collection: AngularFirestoreCollection<CircleStateData> = this.fireStore.collection<CircleStateData>('/circles/' + circleId + '/states', ref =>
             ref
@@ -89,7 +89,7 @@ export class CircleStateService {
                 return;
             }
 
-            const now: firebase.firestore.Timestamp = firebase.firestore.Timestamp.now();
+            const now: firebase.default.firestore.Timestamp = firebase.default.firestore.Timestamp.now();
 
             const stateData: CircleStateData = {
                 state: this.todayState,
@@ -100,7 +100,7 @@ export class CircleStateService {
             if (this.todayRequestType) {
                 stateData.request = {
                     type: this.todayRequestType,
-                    created_at: firebase.firestore.Timestamp.now()
+                    created_at: firebase.default.firestore.Timestamp.now()
                 };
             }
 
@@ -138,16 +138,16 @@ export class CircleStateService {
             const doc: AngularFirestoreDocument<CircleStateData> = this.fireStore.doc<CircleStateData>('/circles/' + circleId + '/states/' + state.id);
 
             state.data.state = this.todayState;
-            state.data.updated_at = firebase.firestore.Timestamp.now();
+            state.data.updated_at = firebase.default.firestore.Timestamp.now();
 
             if (this.todayRequestType) {
                 state.data.request = {
                     type: this.todayRequestType,
-                    created_at: firebase.firestore.Timestamp.now()
+                    created_at: firebase.default.firestore.Timestamp.now()
                 };
             }
 
-            doc.set(state.data, {merge: true}).then(() => {
+            doc.set(state.data, { merge: true }).then(() => {
                 resolve();
             }, (err) => {
                 reject(err);
@@ -169,9 +169,9 @@ export class CircleStateService {
 
             const doc: AngularFirestoreDocument<CircleStateData> = this.fireStore.doc<CircleStateData>('/circles/' + circleId + '/states/' + state.id);
 
-            state.data.updated_at = firebase.firestore.Timestamp.now();
+            state.data.updated_at = firebase.default.firestore.Timestamp.now();
 
-            doc.set(state.data, {merge: true}).then(() => {
+            doc.set(state.data, { merge: true }).then(() => {
                 resolve();
             }, (err) => {
                 reject(err);
@@ -186,12 +186,12 @@ export class CircleStateService {
                 return;
             }
 
-            const now: firebase.firestore.Timestamp = firebase.firestore.Timestamp.now();
+            const now: firebase.default.firestore.Timestamp = firebase.default.firestore.Timestamp.now();
 
             const stateData: CircleStateData = {
                 emergency: {
                     deal_with: deal_with,
-                    created_at: firebase.firestore.Timestamp.now()
+                    created_at: firebase.default.firestore.Timestamp.now()
                 },
                 created_at: now,
                 updated_at: now

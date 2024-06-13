@@ -1,27 +1,27 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
 
 import Hashids from 'hashids';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 import '@firebase/firestore';
 
-import {Storage} from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
-import {addMinutes, isAfter} from 'date-fns';
+import { addMinutes, isAfter } from 'date-fns';
 
-import {BehaviorSubject, Observable, Subject, Subscription} from 'rxjs';
-import {map, take} from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 // Model
-import {User} from '../../model/user';
-import {Circle} from '../../model/circle';
-import {Share, ShareData} from '../../model/share';
+import { User } from '../../model/user';
+import { Circle } from '../../model/circle';
+import { Share, ShareData } from '../../model/share';
 
 // Utils
-import {Resources} from '../utils/resources';
-import {Comparator, Converter} from '../utils/utils';
+import { Resources } from '../utils/resources';
+import { Comparator, Converter } from '../utils/utils';
 
 @Injectable({
     providedIn: 'root'
@@ -39,7 +39,7 @@ export class ShareService {
     private presentShowShareSubject: Subject<string> = new Subject();
 
     constructor(private fireStore: AngularFirestore,
-                private storage: Storage) {
+        private storage: Storage) {
         this.collection = this.fireStore.collection<ShareData>('shares');
     }
 
@@ -69,9 +69,9 @@ export class ShareService {
             }
 
             const expireAt = addMinutes(new Date(), Resources.Constants.SHARE.VALIDITY);
-            const expireAtTimestamp: firebase.firestore.Timestamp = firebase.firestore.Timestamp.fromDate(expireAt);
+            const expireAtTimestamp: firebase.default.firestore.Timestamp = firebase.default.firestore.Timestamp.fromDate(expireAt);
 
-            const now: firebase.firestore.Timestamp = firebase.firestore.Timestamp.now();
+            const now: firebase.default.firestore.Timestamp = firebase.default.firestore.Timestamp.now();
 
             const shareData: ShareData = {
                 expire_at: expireAtTimestamp,
@@ -108,9 +108,9 @@ export class ShareService {
             const hashId: string = hashIds.encode(dbHashId);
 
             share.data.hash_id = hashId;
-            share.data.updated_at = firebase.firestore.Timestamp.now();
+            share.data.updated_at = firebase.default.firestore.Timestamp.now();
 
-            doc.set(share.data, {merge: true}).then(() => {
+            doc.set(share.data, { merge: true }).then(() => {
                 resolve(hashId);
             }, (err) => {
                 reject(err);
@@ -203,7 +203,7 @@ export class ShareService {
     }
 
     findPendingCircleShare(circleReference: DocumentReference): Observable<Share[]> {
-        const now: firebase.firestore.Timestamp = firebase.firestore.Timestamp.now();
+        const now: firebase.default.firestore.Timestamp = firebase.default.firestore.Timestamp.now();
 
         const collectionShare: AngularFirestoreCollection<ShareData> = this.fireStore.collection<ShareData>('/shares', ref =>
             ref

@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import { AngularFireAnalytics } from '@angular/fire/analytics';
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 
-import {Resources} from '../utils/resources';
+import { Resources } from '../utils/resources';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +18,7 @@ export class GoogleAnalyticsPWAService {
     }
 
     async trackEvent(category: string, action: string): Promise<void> {
-       return this.analytics.logEvent(category, {action});
+        return this.analytics.logEvent(category, { action });
     }
 
 }

@@ -1,6 +1,6 @@
-import {DocumentReference} from '@angular/fire/firestore';
+import { DocumentReference } from '@angular/fire/compat/firestore';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 
 export interface CircleEmergency {
     name: string;
@@ -8,8 +8,8 @@ export interface CircleEmergency {
 }
 
 export interface CircleReminder {
-    next: firebase.firestore.Timestamp;
-    alarm_at: firebase.firestore.Timestamp;
+    next: firebase.default.firestore.Timestamp;
+    alarm_at: firebase.default.firestore.Timestamp;
 }
 
 export interface CircleCenter {
@@ -31,8 +31,8 @@ export interface CircleData {
 
     reminder?: CircleReminder;
 
-    created_at?: firebase.firestore.Timestamp;
-    updated_at?: firebase.firestore.Timestamp;
+    created_at?: firebase.default.firestore.Timestamp;
+    updated_at?: firebase.default.firestore.Timestamp;
 }
 
 export interface Circle {

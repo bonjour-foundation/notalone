@@ -1,20 +1,20 @@
-import {Injectable} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference} from '@angular/fire/firestore';
+import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/compat/firestore';
 
-import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 import '@firebase/firestore';
 
-import {addDays, addMinutes, setHours} from 'date-fns';
+import { addDays, addMinutes, setHours } from 'date-fns';
 
 // Model
-import {User} from '../../model/user';
-import {Circle, CircleData, CircleReminder} from '../../model/circle';
+import { User } from '../../model/user';
+import { Circle, CircleData, CircleReminder } from '../../model/circle';
 
 // Utils and resources
-import {Comparator, Converter} from '../utils/utils';
-import {Resources} from '../utils/resources';
+import { Comparator, Converter } from '../utils/utils';
+import { Resources } from '../utils/resources';
 
 @Injectable({
     providedIn: 'root'
@@ -91,7 +91,7 @@ export class CircleService {
 
     createCircle(user: User): Promise<void> {
         return new Promise<void>(async (resolve, reject) => {
-            const now: firebase.firestore.Timestamp = firebase.firestore.Timestamp.now();
+            const now: firebase.default.firestore.Timestamp = firebase.default.firestore.Timestamp.now();
 
             const circleData: CircleData = {
                 center: {
@@ -130,8 +130,8 @@ export class CircleService {
             const reminderAlarmAt: Date = addMinutes(reminderNext, Resources.Constants.CIRCLE.REMINDER.DEFAULT_ALARM_AT);
 
             resolve({
-                next: firebase.firestore.Timestamp.fromDate(reminderNext),
-                alarm_at: firebase.firestore.Timestamp.fromDate(reminderAlarmAt)
+                next: firebase.default.firestore.Timestamp.fromDate(reminderNext),
+                alarm_at: firebase.default.firestore.Timestamp.fromDate(reminderAlarmAt)
             });
         });
     }
@@ -145,9 +145,9 @@ export class CircleService {
 
             const doc: AngularFirestoreDocument<CircleData> = this.fireStore.doc<CircleData>('circles/' + circle.id);
 
-            circle.data.updated_at = firebase.firestore.Timestamp.now();
+            circle.data.updated_at = firebase.default.firestore.Timestamp.now();
 
-            doc.set(circle.data, {merge: true}).then(() => {
+            doc.set(circle.data, { merge: true }).then(() => {
                 resolve();
             }, (err) => {
                 reject(err);

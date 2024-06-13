@@ -1,39 +1,39 @@
-import {MenuController, ModalController, NavController} from '@ionic/angular';
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { MenuController, ModalController, NavController } from '@ionic/angular';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 import '@firebase/firestore';
 
-import {Storage} from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
-import {Subscription} from 'rxjs';
-import {filter, take} from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { filter, take } from 'rxjs/operators';
 
-import {compareAsc, isSameDay} from 'date-fns';
+import { compareAsc, isSameDay } from 'date-fns';
 
 // Modal
-import {EmergencyModal} from '../../modals/emergency/emergency.modal';
+import { EmergencyModal } from '../../modals/emergency/emergency.modal';
 
 // Model
-import {User} from '../../model/user';
-import {CircleRequestType, CircleState, CircleStateDealWith, CircleStateType} from '../../model/circle-state';
-import {Circle} from '../../model/circle';
+import { User } from '../../model/user';
+import { CircleRequestType, CircleState, CircleStateDealWith, CircleStateType } from '../../model/circle-state';
+import { Circle } from '../../model/circle';
 
 // Utils
-import {Comparator, Converter} from '../../services/utils/utils';
-import {Resources} from '../../services/utils/resources';
+import { Comparator, Converter } from '../../services/utils/utils';
+import { Resources } from '../../services/utils/resources';
 
 // Services
-import {UserService} from '../../services/user/user.service';
-import {CircleService} from '../../services/circle/circle.service';
-import {UserCircleService} from '../../services/user-circle/user-circle.service';
-import {SessionService} from '../../services/session/session.service';
-import {CircleStateService} from '../../services/circle/circle-state.service';
-import {GoogleAnalyticsService} from '../../services/analytics/google-analytics-service';
-import {ErrorService} from '../../services/error/error.service';
-import {TipsService} from '../../services/tips/tips.service';
-import {CircleReminderService} from '../../services/circle/circle-reminder.service';
-import {FirebaseNotificationsService} from '../../services/notifications/firebase-notifications-service';
+import { UserService } from '../../services/user/user.service';
+import { CircleService } from '../../services/circle/circle.service';
+import { UserCircleService } from '../../services/user-circle/user-circle.service';
+import { SessionService } from '../../services/session/session.service';
+import { CircleStateService } from '../../services/circle/circle-state.service';
+import { GoogleAnalyticsService } from '../../services/analytics/google-analytics-service';
+import { ErrorService } from '../../services/error/error.service';
+import { TipsService } from '../../services/tips/tips.service';
+import { CircleReminderService } from '../../services/circle/circle-reminder.service';
+import { FirebaseNotificationsService } from '../../services/notifications/firebase-notifications-service';
 
 @Component({
     selector: 'app-home',
@@ -72,19 +72,19 @@ export class HomePage implements OnInit, OnDestroy {
     private tipsEditCircleVisibleSubscription: Subscription;
 
     constructor(private storage: Storage,
-                private menuController: MenuController,
-                private modalController: ModalController,
-                private navController: NavController,
-                private userService: UserService,
-                private circleService: CircleService,
-                private userCircleService: UserCircleService,
-                private sessionService: SessionService,
-                private circleStateService: CircleStateService,
-                private googleAnalyticsService: GoogleAnalyticsService,
-                private errorService: ErrorService,
-                private tipsService: TipsService,
-                private circleReminderService: CircleReminderService,
-                private firebaseNotificationsService: FirebaseNotificationsService) {
+        private menuController: MenuController,
+        private modalController: ModalController,
+        private navController: NavController,
+        private userService: UserService,
+        private circleService: CircleService,
+        private userCircleService: UserCircleService,
+        private sessionService: SessionService,
+        private circleStateService: CircleStateService,
+        private googleAnalyticsService: GoogleAnalyticsService,
+        private errorService: ErrorService,
+        private tipsService: TipsService,
+        private circleReminderService: CircleReminderService,
+        private firebaseNotificationsService: FirebaseNotificationsService) {
     }
 
     async ngOnInit() {
@@ -378,7 +378,7 @@ export class HomePage implements OnInit, OnDestroy {
                 user: this.sessionUser.ref,
                 first_name: this.sessionUser.data.first_name
             },
-            created_at: firebase.firestore.Timestamp.now()
+            created_at: firebase.default.firestore.Timestamp.now()
         };
 
         await this.circleStateService.updateState(this.circle.id, this.centerState);
@@ -441,8 +441,8 @@ export class HomePage implements OnInit, OnDestroy {
 
     isRequestDealable(): boolean {
         return this.centerState && this.centerState.data && this.centerState.data.request &&
-                this.centerState.data.request.type !== CircleRequestType.GOOD &&
-                !this.centerState.data.request.deal_with;
+            this.centerState.data.request.type !== CircleRequestType.GOOD &&
+            !this.centerState.data.request.deal_with;
     }
 
     hasCircleConnections(): boolean {

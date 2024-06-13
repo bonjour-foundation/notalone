@@ -1,18 +1,18 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 import '@firebase/firestore';
 
-import {addDays, addMinutes, differenceInMinutes, getDate, getMonth, getYear, isPast, setDate, setMonth, setYear} from 'date-fns';
+import { addDays, addMinutes, differenceInMinutes, getDate, getMonth, getYear, isPast, setDate, setMonth, setYear } from 'date-fns';
 
 // Model
-import {Circle} from '../../model/circle';
+import { Circle } from '../../model/circle';
 
 // Utils
-import {Converter} from '../utils/utils';
+import { Converter } from '../utils/utils';
 
 // Services
-import {CircleService} from './circle.service';
+import { CircleService } from './circle.service';
 
 @Injectable({
     providedIn: 'root'
@@ -60,8 +60,8 @@ export class CircleReminderService {
                 const next: Date = addDays(currentNext, 1);
                 const nextAlarmAt: Date = addMinutes(next, range);
 
-                circle.data.reminder.next = firebase.firestore.Timestamp.fromDate(next);
-                circle.data.reminder.alarm_at = firebase.firestore.Timestamp.fromDate(nextAlarmAt);
+                circle.data.reminder.next = firebase.default.firestore.Timestamp.fromDate(next);
+                circle.data.reminder.alarm_at = firebase.default.firestore.Timestamp.fromDate(nextAlarmAt);
 
                 await this.circleService.updateCircle(circle);
 

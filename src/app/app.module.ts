@@ -4,7 +4,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_BASE_HREF } from '@angular/common';
 
-import { IonicStorageModule } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage-angular';;
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
@@ -16,10 +16,10 @@ import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireAnalyticsModule, APP_NAME, APP_VERSION, CONFIG } from '@angular/fire/analytics';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule, SETTINGS } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireAnalyticsModule, APP_NAME, APP_VERSION, CONFIG } from '@angular/fire/compat/analytics';
 
 import { environment } from '../environments/environment';
 
@@ -39,7 +39,6 @@ export function exportTranslateStaticLoader(httpClient: HttpClient) {
 
 @NgModule({
     declarations: [AppComponent],
-    entryComponents: [],
     imports: [
         BrowserModule,
         IonicModule.forRoot(),
@@ -74,7 +73,7 @@ export function exportTranslateStaticLoader(httpClient: HttpClient) {
 
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         { provide: APP_BASE_HREF, useValue: '/' },
-        { provide: FirestoreSettingsToken, useValue: {} },
+        { provide: SETTINGS, useValue: {} },
         { provide: ErrorHandler, useClass: SentryHandler },
         {
             provide: CONFIG,

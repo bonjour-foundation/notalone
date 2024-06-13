@@ -1,22 +1,22 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {IonDatetime, IonRouterOutlet, LoadingController} from '@ionic/angular';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { IonDatetime, IonRouterOutlet, LoadingController } from '@ionic/angular';
 
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
-import {addMinutes, addYears, differenceInMinutes, endOfYear, startOfToday} from 'date-fns';
+import { addMinutes, addYears, differenceInMinutes, endOfYear, startOfToday } from 'date-fns';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 import '@firebase/firestore';
 
-import {Circle} from '../../model/circle';
+import { Circle } from '../../model/circle';
 
-import {Converter} from '../../services/utils/utils';
+import { Converter } from '../../services/utils/utils';
 
-import {Resources} from '../../services/utils/resources';
+import { Resources } from '../../services/utils/resources';
 
-import {CircleService} from '../../services/circle/circle.service';
-import {ErrorService} from '../../services/error/error.service';
-import {GoogleAnalyticsService} from '../../services/analytics/google-analytics-service';
+import { CircleService } from '../../services/circle/circle.service';
+import { ErrorService } from '../../services/error/error.service';
+import { GoogleAnalyticsService } from '../../services/analytics/google-analytics-service';
 
 @Component({
     selector: 'app-schedule',
@@ -42,10 +42,10 @@ export class SchedulePage implements OnInit, OnDestroy {
     maxDate: Date;
 
     constructor(private routerOutlet: IonRouterOutlet,
-                private loadingController: LoadingController,
-                private circleService: CircleService,
-                private errorService: ErrorService,
-                private googleAnalyticsService: GoogleAnalyticsService) {
+        private loadingController: LoadingController,
+        private circleService: CircleService,
+        private errorService: ErrorService,
+        private googleAnalyticsService: GoogleAnalyticsService) {
 
     }
 
@@ -106,7 +106,7 @@ export class SchedulePage implements OnInit, OnDestroy {
 
             this.nextReminder = Converter.getDateObj(picked);
 
-            this.circle.data.reminder.next = firebase.firestore.Timestamp.fromDate(this.nextReminder);
+            this.circle.data.reminder.next = firebase.default.firestore.Timestamp.fromDate(this.nextReminder);
 
             await this.updateRange('' + this.range);
 
@@ -130,7 +130,7 @@ export class SchedulePage implements OnInit, OnDestroy {
 
             const reminderAlarmAt: Date = addMinutes(this.nextReminder, this.range);
 
-            this.circle.data.reminder.alarm_at = firebase.firestore.Timestamp.fromDate(reminderAlarmAt);
+            this.circle.data.reminder.alarm_at = firebase.default.firestore.Timestamp.fromDate(reminderAlarmAt);
 
             resolve();
         });
@@ -152,10 +152,12 @@ export class SchedulePage implements OnInit, OnDestroy {
     }
 
     async openDay() {
-        await this.dayInput.open();
+        // TODO Fabian uncomment
+        // await this.dayInput.open();
     }
 
     async openTime() {
-        await this.timeInput.open();
+        // TODO Fabian uncomment
+        // await this.timeInput.open();
     }
 }

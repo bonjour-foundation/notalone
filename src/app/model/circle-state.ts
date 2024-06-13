@@ -1,6 +1,6 @@
-import {DocumentReference} from '@angular/fire/firestore';
+import { DocumentReference } from '@angular/fire/compat/firestore';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 
 export enum CircleStateType {
     SUPER = 'super',
@@ -14,7 +14,7 @@ export enum CircleRequestType {
     SHOP = 'shop',
     HAND = 'hand',
     PHONE = 'phone',
-    GOOD  = 'good'
+    GOOD = 'good'
 }
 
 export interface CircleStateDealWith {
@@ -25,12 +25,12 @@ export interface CircleStateDealWith {
 export interface CircleRequest {
     type: CircleRequestType;
     deal_with?: CircleStateDealWith;
-    created_at: firebase.firestore.Timestamp;
+    created_at: firebase.default.firestore.Timestamp;
 }
 
 export interface CircleEmergency {
     deal_with?: CircleStateDealWith;
-    created_at: firebase.firestore.Timestamp;
+    created_at: firebase.default.firestore.Timestamp;
 }
 
 export interface CircleStateData {
@@ -40,8 +40,8 @@ export interface CircleStateData {
 
     emergency?: CircleEmergency;
 
-    created_at: firebase.firestore.Timestamp;
-    updated_at: firebase.firestore.Timestamp;
+    created_at: firebase.default.firestore.Timestamp;
+    updated_at: firebase.default.firestore.Timestamp;
 }
 
 export interface CircleState {

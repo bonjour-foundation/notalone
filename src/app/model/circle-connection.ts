@@ -1,4 +1,4 @@
-import {DocumentReference} from '@angular/fire/firestore';
+import { DocumentReference } from '@angular/fire/compat/firestore';
 
 export enum CircleConnectionState {
     REQUESTED = 'requested',
@@ -16,8 +16,8 @@ export interface CircleConnectionData {
 
     language?: string;
 
-    created_at: firebase.firestore.Timestamp;
-    updated_at: firebase.firestore.Timestamp;
+    created_at: firebase.default.firestore.Timestamp;
+    updated_at: firebase.default.firestore.Timestamp;
 }
 
 export interface CircleConnection {

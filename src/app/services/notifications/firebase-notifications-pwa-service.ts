@@ -1,13 +1,13 @@
-import {Platform} from '@ionic/angular';
-import {Injectable} from '@angular/core';
+import { Platform } from '@ionic/angular';
+import { Injectable } from '@angular/core';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 import '@firebase/messaging';
 
-import {environment} from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 // Services
-import {FirebaseNotificationsTokenService} from './firebase-notifications-token-service';
+import { FirebaseNotificationsTokenService } from './firebase-notifications-token-service';
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +15,7 @@ import {FirebaseNotificationsTokenService} from './firebase-notifications-token-
 export class FirebaseNotificationsPwaService {
 
     constructor(private platform: Platform,
-                private firebaseNotificationsTokenService: FirebaseNotificationsTokenService) {
+        private firebaseNotificationsTokenService: FirebaseNotificationsTokenService) {
 
     }
 
@@ -27,28 +27,30 @@ export class FirebaseNotificationsPwaService {
             }
 
             navigator.serviceWorker.ready.then((registration) => {
-                if (!firebase.messaging.isSupported()) {
+                if (!firebase.default.messaging.isSupported()) {
                     resolve();
                     return;
                 }
 
-                const messaging = firebase.messaging();
+                const messaging = firebase.default.messaging();
 
-                messaging.useServiceWorker(registration);
+                // TODO Fabian uncomment
 
-                messaging.usePublicVapidKey(environment.firebase.vapidKey);
+                // messaging.useServiceWorker(registration);
 
-                messaging.onMessage((_payload) => {
-                    // If we want to display a msg when the app is in foreground
-                });
+                // messaging.usePublicVapidKey(environment.firebase.vapidKey);
 
-                messaging.onTokenRefresh(() => {
-                    messaging.getToken().then((refreshedToken: string) => {
-                        this.firebaseNotificationsTokenService.next(refreshedToken);
-                    }).catch((err) => {
-                        // We ignore the error, no notifications then
-                    });
-                });
+                // messaging.onMessage((_payload) => {
+                //     // If we want to display a msg when the app is in foreground
+                // });
+
+                // messaging.onTokenRefresh(() => {
+                //     messaging.getToken().then((refreshedToken: string) => {
+                //         this.firebaseNotificationsTokenService.next(refreshedToken);
+                //     }).catch((err) => {
+                //         // We ignore the error, no notifications then
+                //     });
+                // });
 
                 resolve();
             }, (err) => {
@@ -74,25 +76,26 @@ export class FirebaseNotificationsPwaService {
                 return;
             }
 
-            if (!firebase.messaging.isSupported()) {
-                resolve();
-                return;
-            }
+            // TODO Fabian uncomment
+            // if (!firebase.messaging.isSupported()) {
+            //     resolve();
+            //     return;
+            // }
 
-            try {
-                const messaging = firebase.messaging();
+            // try {
+            //     const messaging = firebase.messaging();
 
-                if (Notification.permission !== 'denied') {
-                    await Notification.requestPermission();
-                }
+            //     if (Notification.permission !== 'denied') {
+            //         await Notification.requestPermission();
+            //     }
 
-                const token: string = await messaging.getToken();
+            //     const token: string = await messaging.getToken();
 
-                this.firebaseNotificationsTokenService.next(token);
-                this.firebaseNotificationsTokenService.enablePush(true);
-            } catch (err) {
-                // No notifications granted
-            }
+            //     this.firebaseNotificationsTokenService.next(token);
+            //     this.firebaseNotificationsTokenService.enablePush(true);
+            // } catch (err) {
+            //     // No notifications granted
+            // }
 
             resolve();
         });

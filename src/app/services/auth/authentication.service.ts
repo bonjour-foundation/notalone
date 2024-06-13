@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {Observable, ReplaySubject} from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 
-import {AngularFireAuth} from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
-import {User as FirebaseUser} from 'firebase';
+import { User as FirebaseUser } from 'firebase/auth';
 
-import {SessionService} from '../session/session.service';
+import { SessionService } from '../session/session.service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +16,7 @@ export class AuthenticationService {
     private authUserSubject: ReplaySubject<FirebaseUser> = new ReplaySubject(1);
 
     constructor(private angularFireAuth: AngularFireAuth,
-                private sessionService: SessionService) {
+        private sessionService: SessionService) {
     }
 
     init(): Promise<void> {
@@ -39,7 +39,7 @@ export class AuthenticationService {
     signOut(): Promise<void> {
         return new Promise<void>(async (resolve, reject) => {
             try {
-                await this.angularFireAuth.auth.signOut();
+                await this.angularFireAuth.signOut();
 
                 this.authUserSubject.next(null);
 
@@ -53,7 +53,7 @@ export class AuthenticationService {
     delete(): Promise<void> {
         return new Promise<void>(async (resolve, reject) => {
             try {
-                await this.angularFireAuth.auth.currentUser.delete();
+                await (await this.angularFireAuth.currentUser).delete();
 
                 this.authUserSubject.next(null);
 
@@ -69,6 +69,12 @@ export class AuthenticationService {
     }
 
     refreshToken(): Promise<string> {
-        return this.angularFireAuth.auth.currentUser.getIdToken(true);
+        return new Promise<string>(async (resolve, reject) => {
+            try {
+                resolve((await this.angularFireAuth.currentUser).getIdToken(true));
+            } catch (err) {
+                reject(err);
+            }
+        });
     }
 }

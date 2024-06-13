@@ -1,10 +1,10 @@
-import {NgModule} from '@angular/core';
-import {IonicModule} from '@ionic/angular';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 
-import {TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
-import {EmergencyModal} from './emergency.modal';
+import { EmergencyModal } from './emergency.modal';
 
 @NgModule({
     declarations: [
@@ -14,8 +14,6 @@ import {EmergencyModal} from './emergency.modal';
         IonicModule,
         CommonModule,
         TranslateModule.forChild()
-    ], entryComponents: [
-        EmergencyModal
     ]
 })
 export class EmergencyModalModule {

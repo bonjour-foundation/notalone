@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {NavController} from '@ionic/angular';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
-import {User as FirebaseUser} from 'firebase';
+import { User as FirebaseUser } from 'firebase/auth';
 
-import {filter, take} from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 
-import {Resources} from '../../../services/utils/resources';
+import { Resources } from '../../../services/utils/resources';
 
-import {GoogleAnalyticsService} from '../../../services/analytics/google-analytics-service';
+import { GoogleAnalyticsService } from '../../../services/analytics/google-analytics-service';
 
-import {AuthenticationService} from '../../../services/auth/authentication.service';
+import { AuthenticationService } from '../../../services/auth/authentication.service';
 
 @Component({
     selector: 'app-create-user-page',
@@ -28,9 +28,9 @@ export class CreateUserPage implements OnInit {
     email: string;
 
     constructor(private navController: NavController,
-                private activatedRoute: ActivatedRoute,
-                private googleAnalyticsService: GoogleAnalyticsService,
-                private authenticationService: AuthenticationService) {
+        private activatedRoute: ActivatedRoute,
+        private googleAnalyticsService: GoogleAnalyticsService,
+        private authenticationService: AuthenticationService) {
 
     }
 
@@ -46,26 +46,26 @@ export class CreateUserPage implements OnInit {
             filter((firebaseUser: FirebaseUser) => firebaseUser !== null && firebaseUser !== undefined),
             take(1)).subscribe(async (firebaseUser: FirebaseUser) => {
 
-            if (firebaseUser.displayName && firebaseUser.displayName !== undefined && firebaseUser.displayName !== '') {
-                if (firebaseUser.displayName.indexOf(' ') > -1) {
-                    this.firstName = firebaseUser.displayName.split(' ').slice(0, -1).join(' ');
-                    this.lastName = firebaseUser.displayName.split(' ').slice(-1).join(' ');
-                } else {
-                    this.lastName = firebaseUser.displayName;
+                if (firebaseUser.displayName && firebaseUser.displayName !== undefined && firebaseUser.displayName !== '') {
+                    if (firebaseUser.displayName.indexOf(' ') > -1) {
+                        this.firstName = firebaseUser.displayName.split(' ').slice(0, -1).join(' ');
+                        this.lastName = firebaseUser.displayName.split(' ').slice(-1).join(' ');
+                    } else {
+                        this.lastName = firebaseUser.displayName;
+                    }
                 }
-            }
 
-            this.email = firebaseUser.email;
+                this.email = firebaseUser.email;
 
-            this.loaded = true;
-        });
+                this.loaded = true;
+            });
     }
 
     async navigate() {
         if (this.centerUser) {
-            await this.navController.navigateRoot('/share-circle', {animated: true});
+            await this.navController.navigateRoot('/share-circle', { animated: true });
         } else {
-            await this.navController.navigateRoot(['/done', false], {animated: true});
+            await this.navController.navigateRoot(['/done', false], { animated: true });
         }
     }
 

@@ -1,11 +1,11 @@
-import {IonInput} from '@ionic/angular';
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { IonInput } from '@ionic/angular';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {AngularFireAuth} from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 // Services
-import {ErrorService} from '../../services/error/error.service';
+import { ErrorService } from '../../services/error/error.service';
 
 @Component({
     selector: 'app-request-reset-password',
@@ -25,8 +25,8 @@ export class RequestResetPasswordComponent {
     private resetEmailSent: EventEmitter<void> = new EventEmitter();
 
     constructor(private formBuilder: FormBuilder,
-                private angularFireAuth: AngularFireAuth,
-                private errorService: ErrorService) {
+        private angularFireAuth: AngularFireAuth,
+        private errorService: ErrorService) {
         this.userForm = this.formBuilder.group({
             email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
         });
@@ -50,7 +50,7 @@ export class RequestResetPasswordComponent {
             //     handleCodeInApp: true
             // });
 
-            await this.angularFireAuth.auth.sendPasswordResetEmail(this.userForm.value.email);
+            await this.angularFireAuth.sendPasswordResetEmail(this.userForm.value.email);
 
             this.resetEmailSent.emit();
         } catch (err) {

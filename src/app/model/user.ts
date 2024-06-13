@@ -1,6 +1,7 @@
-import {DocumentReference} from '@angular/fire/firestore';
+import { DocumentReference } from '@angular/fire/compat/firestore';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
+
 
 export interface UserPush {
     enabled?: boolean;
@@ -21,8 +22,8 @@ export interface UserData {
     circles_center?: DocumentReference[];
     circles_connections?: DocumentReference[];
 
-    created_at?: firebase.firestore.Timestamp;
-    updated_at?: firebase.firestore.Timestamp;
+    created_at?: firebase.default.firestore.Timestamp;
+    updated_at?: firebase.default.firestore.Timestamp;
 }
 
 export interface User {

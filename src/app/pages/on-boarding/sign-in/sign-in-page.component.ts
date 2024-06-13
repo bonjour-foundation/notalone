@@ -9,11 +9,11 @@ import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 
 import { Subscription } from 'rxjs';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 import '@firebase/auth';
-import { User as FirebaseUser } from 'firebase';
+import { User as FirebaseUser } from 'firebase/auth';
 
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 import { filter, take } from 'rxjs/operators';
 
@@ -144,7 +144,7 @@ export class SignInPage implements OnInit, OnDestroy {
                 if (googlePlusUser) {
                     this.signInProcessing = true;
 
-                    await this.angularFireAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(googlePlusUser.idToken));
+                    await this.angularFireAuth.signInWithCredential(firebase.default.auth.GoogleAuthProvider.credential(googlePlusUser.idToken));
                 } else {
                     this.errorService.error('ERROR.AUTH.ERROR');
                 }
@@ -156,8 +156,8 @@ export class SignInPage implements OnInit, OnDestroy {
 
     private async googleLoginWeb() {
         try {
-            const provider: firebase.auth.GoogleAuthProvider = new firebase.auth.GoogleAuthProvider();
-            await this.angularFireAuth.auth.signInWithRedirect(provider);
+            const provider: firebase.default.auth.GoogleAuthProvider = new firebase.default.auth.GoogleAuthProvider();
+            await this.angularFireAuth.signInWithRedirect(provider);
         } catch (err) {
             this.errorService.error('ERROR.AUTH.ERROR');
         }

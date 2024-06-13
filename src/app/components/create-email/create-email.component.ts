@@ -1,19 +1,19 @@
-import {IonInput} from '@ionic/angular';
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import { IonInput } from '@ionic/angular';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
-import {AngularFireAuth} from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
-import {filter, take} from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 // Model
-import {User} from '../../model/user';
+import { User } from '../../model/user';
 
 // Services
-import {ErrorService} from '../../services/error/error.service';
-import {SessionService} from '../../services/session/session.service';
+import { ErrorService } from '../../services/error/error.service';
+import { SessionService } from '../../services/session/session.service';
 
 const passwordErrorValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
     const password = control.get('password');
@@ -57,10 +57,10 @@ export class CreateEmailComponent {
     private resetPassword: EventEmitter<void> = new EventEmitter();
 
     constructor(private formBuilder: FormBuilder,
-                private angularFireAuth: AngularFireAuth,
-                private errorService: ErrorService,
-                private sessionService: SessionService,
-                private translateService: TranslateService) {
+        private angularFireAuth: AngularFireAuth,
+        private errorService: ErrorService,
+        private sessionService: SessionService,
+        private translateService: TranslateService) {
         this.userForm = this.formBuilder.group({
             email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
             password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(64)])),
@@ -122,8 +122,8 @@ export class CreateEmailComponent {
         }
     }
 
-    private async createUser(): Promise<firebase.auth.UserCredential> {
-        return this.angularFireAuth.auth.createUserWithEmailAndPassword(this.userForm.value.email, this.userForm.value.password);
+    private async createUser(): Promise<firebase.default.auth.UserCredential> {
+        return this.angularFireAuth.createUserWithEmailAndPassword(this.userForm.value.email, this.userForm.value.password);
     }
 
     private async signIn() {
@@ -131,8 +131,8 @@ export class CreateEmailComponent {
             filter((sessionUser: User) => sessionUser !== null && sessionUser !== undefined),
             take(1)).subscribe(async (_sessionUser: User) => {
                 this.signedIn.emit();
-        });
+            });
 
-        await this.angularFireAuth.auth.signInWithEmailAndPassword(this.userForm.value.email, this.userForm.value.password);
+        await this.angularFireAuth.signInWithEmailAndPassword(this.userForm.value.email, this.userForm.value.password);
     }
 }

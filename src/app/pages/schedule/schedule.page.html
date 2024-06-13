@@ -19,22 +19,24 @@
 
     <ion-list class="ion-padding-start ion-padding-end">
       <ion-item>
+
         <ion-label position="floating">{{ 'SCHEDULE.NEXT_DAY' | translate }}</ion-label>
-        <ion-datetime #day displayFormat="D MMMM YYYY"
-                      [value]="nextReminder ? nextReminder.toISOString() : null" [min]="minDate ? minDate.toISOString() : null" [max]="maxDate ? maxDate.toISOString() : null"
-                      (ionChange)="onChangeReminderAt($event)"
-                      monthNames="{{'SCHEDULE.MONTHS' | translate}}"
-                      cancelText="{{'CORE.CANCEL' | translate}}" doneText="{{'CORE.OK' | translate}}"></ion-datetime>
-        <a (click)="openDay()" slot="end"><ion-icon src="assets/img/pencil.svg" ariaLabel="{{ 'SCHEDULE.NEXT_DAY' | translate }}"></ion-icon></a>
+        <!-- TODO Fabian changed monthNames to monthValues -->
+        <ion-datetime #day displayFormat="D MMMM YYYY" [value]="nextReminder ? nextReminder.toISOString() : null"
+          [min]="minDate ? minDate.toISOString() : null" [max]="maxDate ? maxDate.toISOString() : null"
+          (ionChange)="onChangeReminderAt($event)" monthValues="{{'SCHEDULE.MONTHS' | translate}}"
+          cancelText="{{'CORE.CANCEL' | translate}}" doneText="{{'CORE.OK' | translate}}"></ion-datetime>
+        <a (click)="openDay()" slot="end"><ion-icon src="assets/img/pencil.svg"
+            ariaLabel="{{ 'SCHEDULE.NEXT_DAY' | translate }}"></ion-icon></a>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">{{ 'SCHEDULE.NEXT_TIME' | translate }}</ion-label>
         <ion-datetime #time displayFormat="HH:mm" minuteValues="0,15,30,45"
-                      [value]="nextReminder ? nextReminder.toISOString() : null"
-                      (ionChange)="onChangeReminderAt($event)"
-                      cancelText="{{'CORE.CANCEL' | translate}}" doneText="{{'CORE.OK' | translate}}"></ion-datetime>
-        <a (click)="openTime()" slot="end"><ion-icon src="assets/img/pencil.svg" ariaLabel="{{ 'SCHEDULE.NEXT_TIME' | translate }}"></ion-icon></a>
+          [value]="nextReminder ? nextReminder.toISOString() : null" (ionChange)="onChangeReminderAt($event)"
+          cancelText="{{'CORE.CANCEL' | translate}}" doneText="{{'CORE.OK' | translate}}"></ion-datetime>
+        <a (click)="openTime()" slot="end"><ion-icon src="assets/img/pencil.svg"
+            ariaLabel="{{ 'SCHEDULE.NEXT_TIME' | translate }}"></ion-icon></a>
       </ion-item>
     </ion-list>
 

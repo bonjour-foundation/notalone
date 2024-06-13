@@ -1,16 +1,16 @@
-import {Injectable} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, DocumentReference} from '@angular/fire/firestore';
+import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/compat/firestore';
 
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 import '@firebase/firestore';
 
 // Model
-import {Circle} from '../../model/circle';
-import {User} from '../../model/user';
-import {CircleConnection, CircleConnectionData, CircleConnectionState} from '../../model/circle-connection';
+import { Circle } from '../../model/circle';
+import { User } from '../../model/user';
+import { CircleConnection, CircleConnectionData, CircleConnectionState } from '../../model/circle-connection';
 
 @Injectable({
     providedIn: 'root'
@@ -58,7 +58,7 @@ export class CircleConnectionService {
                 return;
             }
 
-            const now: firebase.firestore.Timestamp = firebase.firestore.Timestamp.now();
+            const now: firebase.default.firestore.Timestamp = firebase.default.firestore.Timestamp.now();
 
             const data: CircleConnectionData = {
                 user: createdUser.ref,

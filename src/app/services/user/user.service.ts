@@ -1,27 +1,27 @@
-import {Injectable} from '@angular/core';
-import {Platform} from '@ionic/angular';
+import { Injectable } from '@angular/core';
+import { Platform } from '@ionic/angular';
 
-import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 import '@firebase/firestore';
-import {User as FirebaseUser} from 'firebase';
+import { User as FirebaseUser } from 'firebase/auth';
 
-import {Storage} from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 
 // Model
-import {User, UserData} from '../../model/user';
+import { User, UserData } from '../../model/user';
 
 // Utils
-import {Comparator} from '../utils/utils';
+import { Comparator } from '../utils/utils';
 
 // Services
-import {AuthenticationService} from '../auth/authentication.service';
-import {take} from 'rxjs/operators';
+import { AuthenticationService } from '../auth/authentication.service';
+import { take } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -36,10 +36,10 @@ export class UserService {
     private collection: AngularFirestoreCollection<UserData>;
 
     constructor(private platform: Platform,
-                private storage: Storage,
-                private fireStore: AngularFirestore,
-                private translateService: TranslateService,
-                private authenticationService: AuthenticationService) {
+        private storage: Storage,
+        private fireStore: AngularFirestore,
+        private translateService: TranslateService,
+        private authenticationService: AuthenticationService) {
         this.collection = this.fireStore.collection<UserData>('users');
     }
 
@@ -79,7 +79,7 @@ export class UserService {
                     return;
                 }
 
-                const now: firebase.firestore.Timestamp = firebase.firestore.Timestamp.now();
+                const now: firebase.default.firestore.Timestamp = firebase.default.firestore.Timestamp.now();
 
                 const platforms: string[] = this.platform.platforms();
 
@@ -118,9 +118,9 @@ export class UserService {
 
             const doc: AngularFirestoreDocument<UserData> = this.fireStore.doc<UserData>('users/' + user.id);
 
-            user.data.updated_at = firebase.firestore.Timestamp.now();
+            user.data.updated_at = firebase.default.firestore.Timestamp.now();
 
-            doc.set(user.data, {merge: true}).then(() => {
+            doc.set(user.data, { merge: true }).then(() => {
                 resolve();
             }, (err) => {
                 reject(err);

@@ -1,4 +1,4 @@
-import {name, version} from '../../package.json';
+import packageInfo from '../../package.json';
 
 export const environment = {
   production: false,
@@ -16,6 +16,6 @@ export const environment = {
     vapidKey: 'BFHi5gtr2trQf8ikiVhSOdctoma4N6-1IT_kpal_1w-4SIlB1O-Iil-4Mf13f-S3JnmyJ0RQWN0y8T0Qn8HLgQU',
     webClientId: '1086335673175-1paac7l16rql203g1e3bk0feidjlg194.apps.googleusercontent.com'
   },
-  name,
-  version
+  name: packageInfo.name,
+  version: packageInfo.version
 };

@@ -1,19 +1,19 @@
-import {DocumentReference} from '@angular/fire/firestore';
+import { DocumentReference } from '@angular/fire/compat/firestore';
 
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/compat/app';
 
 export interface ShareData {
     hash_id?: string;
 
-    expire_at: firebase.firestore.Timestamp;
+    expire_at: firebase.default.firestore.Timestamp;
 
     circle: DocumentReference;
 
     user_from: DocumentReference;
     user_to?: DocumentReference;
 
-    created_at: firebase.firestore.Timestamp;
-    updated_at: firebase.firestore.Timestamp;
+    created_at: firebase.default.firestore.Timestamp;
+    updated_at: firebase.default.firestore.Timestamp;
 }
 
 export interface Share {
