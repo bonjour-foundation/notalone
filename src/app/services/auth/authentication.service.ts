@@ -68,7 +68,10 @@ export class AuthenticationService {
         return this.authUserSubject.asObservable();
     }
 
+
     refreshToken(): Promise<string> {
+        // return this.angularFireAuth.auth.currentUser.getIdToken(true);
+        // TODO Fabian, Check
         return new Promise<string>(async (resolve, reject) => {
             try {
                 resolve((await this.angularFireAuth.currentUser).getIdToken(true));
