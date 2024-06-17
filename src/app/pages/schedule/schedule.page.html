@@ -21,11 +21,11 @@
       <ion-item>
 
         <ion-label position="floating">{{ 'SCHEDULE.NEXT_DAY' | translate }}</ion-label>
-        <!-- TODO Fabian changed monthNames to monthValues -->
+        <!-- TODO Fabian check removed monthNames: monthNames="{{'SCHEDULE.MONTHS' | translate}}" -->
         <ion-datetime #day displayFormat="D MMMM YYYY" [value]="nextReminder ? nextReminder.toISOString() : null"
           [min]="minDate ? minDate.toISOString() : null" [max]="maxDate ? maxDate.toISOString() : null"
-          (ionChange)="onChangeReminderAt($event)" monthValues="{{'SCHEDULE.MONTHS' | translate}}"
-          cancelText="{{'CORE.CANCEL' | translate}}" doneText="{{'CORE.OK' | translate}}"></ion-datetime>
+          (ionChange)="onChangeReminderAt($event)" cancelText="{{'CORE.CANCEL' | translate}}"
+          doneText="{{'CORE.OK' | translate}}"></ion-datetime>
         <a (click)="openDay()" slot="end"><ion-icon src="assets/img/pencil.svg"
             ariaLabel="{{ 'SCHEDULE.NEXT_DAY' | translate }}"></ion-icon></a>
       </ion-item>
