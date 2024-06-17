@@ -55,6 +55,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     ngOnInit() {
         this.initializeTranslateServiceConfig();
 
+        // TODO Fabian: check ionic-storage init: https://github.com/ionic-team/ionic-storage/blob/main/README.md#with-angular
+        this.storage.create();
+
         this.platform.ready().then(async () => {
             await this.firebaseNotificationsService.init();
 

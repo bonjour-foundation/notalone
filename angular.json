@@ -89,6 +89,14 @@
               "serviceWorker": false,
               "ngswConfigPath": "src/ngsw-config.json"
             },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
             "ci": {
               "budgets": [
                 {
@@ -108,6 +116,9 @@
           "configurations": {
             "production": {
               "browserTarget": "app:build:production"
+            },
+            "development": {
+              "browserTarget": "app:build:development"
             },
             "ci": {
               "progress": false
@@ -291,6 +302,14 @@
               "serviceWorker": true,
               "ngswConfigPath": "src/ngsw-config.json"
             },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
             "ci": {
               "budgets": [
                 {
@@ -310,6 +329,9 @@
           "configurations": {
             "production": {
               "browserTarget": "app:build:production"
+            },
+            "development": {
+              "browserTarget": "app:build:development"
             },
             "ci": {
               "progress": false

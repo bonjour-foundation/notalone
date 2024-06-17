@@ -6,6 +6,7 @@
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "ng": "ng",
+    "start-dev": "ng serve app --configuration=development",
     "start": "ng serve",
     "config": "ts-node -O '{\"module\": \"commonjs\"}' ./config.index.ts",
     "build": "ng build",
