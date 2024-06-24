@@ -22,6 +22,24 @@ cd notalone
 npm ci
 npm run start
 ```
+## Useful dev commands
+
+Cordova
+```
+npx ionic cordova requirements   
+
+```
+
+Use Java version 11: 
+- setup jenv
+    https://www.baeldung.com/jenv-multiple-jdk#:~:text=jEnv%20supports%20three%20types%20of,of%20the%20global%20JDK%20version.
+
+
+Run on ios after build
+```
+native-run ios --app platforms/ios/build/emulator/NotAlone.app
+native-run ios --app platforms/ios/build/emulator/NotAlone.app --target 0522FF7E-CFD7-4A1B-A951-B7AB18F607DF
+```
 
 ## License
 

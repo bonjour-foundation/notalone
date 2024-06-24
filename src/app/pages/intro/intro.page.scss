@@ -1,5 +1,6 @@
 deckgo-deck {
   --pager-display: none;
+  --animation-fade-duration: 1000ms;
 
 }
 
@@ -24,7 +25,7 @@ deckgo-slide-title {
   div.text {
     z-index: 1;
 
-    > p {
+    >p {
       min-height: 46px;
     }
 
@@ -46,7 +47,8 @@ deckgo-slide-title {
     background: var(--ion-color-background-red);
   }
 
-  img.lady, img.organisation {
+  img.lady,
+  img.organisation {
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -100,7 +102,8 @@ deckgo-slide-title {
       align-self: flex-start;
     }
 
-    h1, img.logo {
+    h1,
+    img.logo {
       margin-top: 4rem;
 
       @media screen and (min-height: 720px) {
@@ -113,12 +116,18 @@ deckgo-slide-title {
     }
   }
 
-  div.help, div.team, div.inquiry, div.info, div.organization, div.los-gehts {
+  div.help,
+  div.team,
+  div.inquiry,
+  div.info,
+  div.organization,
+  div.los-gehts {
     position: relative;
     height: 100%;
     width: 100%;
 
-    img, ion-label {
+    img,
+    ion-label {
       position: absolute;
       left: 50%;
       transform: translate(-50%, 0);
@@ -145,7 +154,11 @@ deckgo-slide-title {
     }
 
     ion-label {
-      &.help-label, &.inquiry-label, &.info-label, &.organization-label {
+
+      &.help-label,
+      &.inquiry-label,
+      &.info-label,
+      &.organization-label {
         width: 12rem;
 
         @media screen and (max-height: 568px) {
@@ -166,7 +179,8 @@ deckgo-slide-title {
         top: 8rem;
       }
 
-      &.info-label, &.organization-label {
+      &.info-label,
+      &.organization-label {
         top: 11.6rem;
 
         @media screen and (min-height: 720px) {

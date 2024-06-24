@@ -2,20 +2,24 @@
 </ion-header>
 
 <ion-content color="background" scrollY="false">
-  <deckgo-deck #introSlider transition="fade" (slideNextDidChange)="updateLastSlide()" (slidePrevDidChange)="updateLastSlide()">
-
+  <deckgo-deck #introSlider animation="fade" (slideNextDidChange)="updateLastSlide()" direction="horizontal"
+    direction-mobile="horizontal" (slidePrevDidChange)="updateLastSlide()">
     <deckgo-slide-title>
       <section class="grid" slot="title">
         <div class="text ion-padding-start ion-padding-end">
-          <img class="logo" src="assets/img/intro/logo.svg" role="presentation" loading="lazy" alt="{{ 'INTRO.SLIDES.BONJOUR.TITLE' | translate }}"/>
+          <img class="logo" src="assets/img/intro/logo.svg" role="presentation" loading="lazy"
+            alt="{{ 'INTRO.SLIDES.BONJOUR.TITLE' | translate }}" />
           <h1 class="first-title ion-text-center">{{ 'INTRO.SLIDES.BONJOUR.TITLE' | translate }}</h1>
           <p class="ion-text-center" [innerHTML]="'INTRO.SLIDES.BONJOUR.TEXT' | translate"></p>
-          <img class="by-bonjour" src="assets/img/intro/by-bonjour.svg" role="presentation" loading="lazy" alt="By Bonjour"/>
+          <img class="by-bonjour" src="assets/img/intro/by-bonjour.svg" role="presentation" loading="lazy"
+            alt="By Bonjour" />
         </div>
 
-        <img class="lady" src="assets/img/intro/illustration.svg" role="presentation" loading="lazy" alt="{{ 'INTRO.SLIDES.BONJOUR.TITLE' | translate }}"/>
+        <img class="lady" src="assets/img/intro/illustration.svg" role="presentation" loading="lazy"
+          alt="{{ 'INTRO.SLIDES.BONJOUR.TITLE' | translate }}" />
 
-        <app-intro-nav (next)="next()" (skip)="navigate(true)" [lastSlide]="lastSlide" [noSkip]="true" [transparent]="true"></app-intro-nav>
+        <app-intro-nav (next)="next()" (skip)="navigate(true)" [lastSlide]="lastSlide" [noSkip]="true"
+          [transparent]="true"></app-intro-nav>
       </section>
     </deckgo-slide-title>
 
@@ -29,10 +33,12 @@
         <div class="help ion-padding-start ion-padding-end">
           <ion-label class="help-label ion-padding" [innerHTML]="'INTRO.SLIDES.HELP.INFO' | translate"></ion-label>
 
-          <img src="assets/img/intro/help.svg" role="presentation" loading="lazy" alt="{{ 'INTRO.SLIDES.HELP.TITLE' | translate }}"/>
+          <img src="assets/img/intro/help.svg" role="presentation" loading="lazy"
+            alt="{{ 'INTRO.SLIDES.HELP.TITLE' | translate }}" />
         </div>
 
-        <app-intro-nav [noSkip]="slideIndex === 0" (next)="next()" (skip)="navigate(true)" [lastSlide]="lastSlide"></app-intro-nav>
+        <app-intro-nav [noSkip]="slideIndex === 0" (next)="next()" (skip)="navigate(true)"
+          [lastSlide]="lastSlide"></app-intro-nav>
       </section>
     </deckgo-slide-title>
 
@@ -44,10 +50,12 @@
         </div>
 
         <div class="team ion-padding-start ion-padding-end">
-          <img src="assets/img/intro/team.svg" role="presentation" loading="lazy" alt="{{ 'INTRO.SLIDES.TEAM.TITLE' | translate }}"/>
+          <img src="assets/img/intro/team.svg" role="presentation" loading="lazy"
+            alt="{{ 'INTRO.SLIDES.TEAM.TITLE' | translate }}" />
         </div>
 
-        <app-intro-nav [noSkip]="slideIndex === 0" (next)="next()" (skip)="navigate(true)" [lastSlide]="lastSlide"></app-intro-nav>
+        <app-intro-nav [noSkip]="slideIndex === 0" (next)="next()" (skip)="navigate(true)"
+          [lastSlide]="lastSlide"></app-intro-nav>
       </section>
     </deckgo-slide-title>
 
@@ -59,12 +67,15 @@
         </div>
 
         <div class="inquiry ion-padding-start ion-padding-end">
-          <ion-label class="inquiry-label ion-padding" [innerHTML]="'INTRO.SLIDES.INQUIRY.INFO' | translate"></ion-label>
+          <ion-label class="inquiry-label ion-padding"
+            [innerHTML]="'INTRO.SLIDES.INQUIRY.INFO' | translate"></ion-label>
 
-          <img src="assets/img/intro/inquiry.svg" role="presentation" loading="lazy" alt="{{ 'INTRO.SLIDES.INQUIRY.TITLE' | translate }}"/>
+          <img src="assets/img/intro/inquiry.svg" role="presentation" loading="lazy"
+            alt="{{ 'INTRO.SLIDES.INQUIRY.TITLE' | translate }}" />
         </div>
 
-        <app-intro-nav [noSkip]="slideIndex === 0" (next)="next()" (skip)="navigate(true)" [lastSlide]="lastSlide"></app-intro-nav>
+        <app-intro-nav [noSkip]="slideIndex === 0" (next)="next()" (skip)="navigate(true)"
+          [lastSlide]="lastSlide"></app-intro-nav>
       </section>
     </deckgo-slide-title>
 
@@ -76,12 +87,15 @@
         </div>
 
         <div class="info ion-padding-start ion-padding-end">
-          <ion-label class="info-label ion-padding" [innerHTML]="'INTRO.SLIDES.INFORMATION.INFO' | translate"></ion-label>
+          <ion-label class="info-label ion-padding"
+            [innerHTML]="'INTRO.SLIDES.INFORMATION.INFO' | translate"></ion-label>
 
-          <img src="assets/img/intro/info.svg" role="presentation" loading="lazy" alt="{{ 'INTRO.SLIDES.INFORMATION.TITLE' | translate }}"/>
+          <img src="assets/img/intro/info.svg" role="presentation" loading="lazy"
+            alt="{{ 'INTRO.SLIDES.INFORMATION.TITLE' | translate }}" />
         </div>
 
-        <app-intro-nav [noSkip]="slideIndex === 0" (next)="next()" (skip)="navigate(true)" [lastSlide]="lastSlide"></app-intro-nav>
+        <app-intro-nav [noSkip]="slideIndex === 0" (next)="next()" (skip)="navigate(true)"
+          [lastSlide]="lastSlide"></app-intro-nav>
       </section>
     </deckgo-slide-title>
 
@@ -93,12 +107,15 @@
         </div>
 
         <div class="organization ion-padding-start ion-padding-end">
-          <ion-label class="organization-label ion-padding" [innerHTML]="'INTRO.SLIDES.ORGANIZATION.INFO' | translate"></ion-label>
+          <ion-label class="organization-label ion-padding"
+            [innerHTML]="'INTRO.SLIDES.ORGANIZATION.INFO' | translate"></ion-label>
 
-          <img src="assets/img/intro/organization.svg" role="presentation" loading="lazy" alt="{{ 'INTRO.SLIDES.ORGANIZATION.TITLE' | translate }}"/>
+          <img src="assets/img/intro/organization.svg" role="presentation" loading="lazy"
+            alt="{{ 'INTRO.SLIDES.ORGANIZATION.TITLE' | translate }}" />
         </div>
 
-        <app-intro-nav [noSkip]="slideIndex === 0" (next)="next()" (skip)="navigate(true)" [lastSlide]="lastSlide"></app-intro-nav>
+        <app-intro-nav [noSkip]="slideIndex === 0" (next)="next()" (skip)="navigate(true)"
+          [lastSlide]="lastSlide"></app-intro-nav>
       </section>
     </deckgo-slide-title>
 
@@ -109,14 +126,16 @@
         </div>
 
         <div class="los-gehts ion-padding-start ion-padding-end">
-          <img class="los-gehts-img" src="assets/img/intro/los-gehts.svg" role="presentation" loading="lazy" alt="{{ 'INTRO.SLIDES.LOS_GEHTS.TITLE' | translate }}"/>
+          <img class="los-gehts-img" src="assets/img/intro/los-gehts.svg" role="presentation" loading="lazy"
+            alt="{{ 'INTRO.SLIDES.LOS_GEHTS.TITLE' | translate }}" />
         </div>
 
         <app-background-circle>
           <ion-label class="ion-padding" [innerHTML]="'INTRO.SLIDES.LOS_GEHTS.INFO' | translate"></ion-label>
         </app-background-circle>
 
-        <app-intro-nav [noSkip]="slideIndex === 0" (next)="next()" (skip)="navigate(true)" [lastSlide]="lastSlide"></app-intro-nav>
+        <app-intro-nav [noSkip]="slideIndex === 0" (next)="next()" (skip)="navigate(true)"
+          [lastSlide]="lastSlide"></app-intro-nav>
       </section>
     </deckgo-slide-title>
 
