@@ -40,6 +40,7 @@ export class SchedulePage implements OnInit, OnDestroy {
 
     minDate: Date;
     maxDate: Date;
+    dateExample = new Date().toISOString();
 
     constructor(private routerOutlet: IonRouterOutlet,
         private loadingController: LoadingController,
@@ -152,12 +153,12 @@ export class SchedulePage implements OnInit, OnDestroy {
     }
 
     async openDay() {
-        // TODO Fabian uncomment
+        // TODO Fabian remove unneeded
         // await this.dayInput.open();
     }
 
     async openTime() {
-        // TODO Fabian uncomment
+        // TODO Fabian remove unneeded
         // await this.timeInput.open();
     }
 }

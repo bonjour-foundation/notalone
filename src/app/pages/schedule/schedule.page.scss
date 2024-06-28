@@ -13,12 +13,14 @@ div.title {
 ion-list {
   height: 100%;
 
-  ion-item {
+  ion-item.labeled-datetime {
+
     ion-icon {
-      padding-top: 32px;
+      padding-left: 10px;
       font-size: var(--heading-small-font-size);
     }
   }
+
 }
 
 div.actions {

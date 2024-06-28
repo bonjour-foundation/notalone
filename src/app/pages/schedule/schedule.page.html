@@ -18,26 +18,34 @@
     </div>
 
     <ion-list class="ion-padding-start ion-padding-end">
-      <ion-item>
-
-        <ion-label position="floating">{{ 'SCHEDULE.NEXT_DAY' | translate }}</ion-label>
-        <!-- TODO Fabian check removed monthNames: monthNames="{{'SCHEDULE.MONTHS' | translate}}" -->
-        <ion-datetime #day displayFormat="D MMMM YYYY" [value]="nextReminder ? nextReminder.toISOString() : null"
-          [min]="minDate ? minDate.toISOString() : null" [max]="maxDate ? maxDate.toISOString() : null"
-          (ionChange)="onChangeReminderAt($event)" cancelText="{{'CORE.CANCEL' | translate}}"
-          doneText="{{'CORE.OK' | translate}}"></ion-datetime>
-        <a (click)="openDay()" slot="end"><ion-icon src="assets/img/pencil.svg"
-            ariaLabel="{{ 'SCHEDULE.NEXT_DAY' | translate }}"></ion-icon></a>
+      <ion-item id="open-modal-day" class="labeled-datetime">
+        <ion-label>{{ 'SCHEDULE.NEXT_DAY' | translate }}</ion-label>
+        <ion-datetime-button datetime="day"></ion-datetime-button>
+        <ion-icon src="assets/img/pencil.svg" ariaLabel="{{ 'SCHEDULE.NEXT_DAY' | translate }}"></ion-icon>
       </ion-item>
+      <ion-modal trigger="open-modal-day" [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="day" presentation="date" displayFormat="D MMMM YYYY"
+            [value]="nextReminder ? nextReminder.toISOString() : null" [min]="minDate ? minDate.toISOString() : null"
+            [max]="maxDate ? maxDate.toISOString() : null" (ionChange)="onChangeReminderAt($event)"
+            cancelText="{{'CORE.CANCEL' | translate}}" doneText="{{'CORE.OK' | translate}}" [showDefaultButtons]="true">
+          </ion-datetime>
+        </ng-template>
+      </ion-modal>
 
-      <ion-item>
-        <ion-label position="floating">{{ 'SCHEDULE.NEXT_TIME' | translate }}</ion-label>
-        <ion-datetime #time displayFormat="HH:mm" minuteValues="0,15,30,45"
-          [value]="nextReminder ? nextReminder.toISOString() : null" (ionChange)="onChangeReminderAt($event)"
-          cancelText="{{'CORE.CANCEL' | translate}}" doneText="{{'CORE.OK' | translate}}"></ion-datetime>
-        <a (click)="openTime()" slot="end"><ion-icon src="assets/img/pencil.svg"
-            ariaLabel="{{ 'SCHEDULE.NEXT_TIME' | translate }}"></ion-icon></a>
+      <ion-item id="open-modal-time" class="labeled-datetime">
+        <ion-label>{{ 'SCHEDULE.NEXT_TIME' | translate }}</ion-label>
+        <ion-datetime-button datetime="time"></ion-datetime-button>
+        <ion-icon src="assets/img/pencil.svg" ariaLabel="{{ 'SCHEDULE.NEXT_TIME' | translate }}"></ion-icon>
       </ion-item>
+      <ion-modal trigger="open-modal-time" [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="time" presentation="time" displayFormat="HH:mm" hourCycle="h23" minuteValues="0,15,30,45"
+            [value]="nextReminder ? nextReminder.toISOString() : null" (ionChange)="onChangeReminderAt($event)"
+            cancelText="{{'CORE.CANCEL' | translate}}" doneText="{{'CORE.OK' | translate}}"
+            [showDefaultButtons]="true"></ion-datetime>
+        </ng-template>
+      </ion-modal>
     </ion-list>
 
     <div class="ion-padding-start ion-padding-end ion-margin-bottom ion-text-center actions">

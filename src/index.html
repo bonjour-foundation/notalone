@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- TODO Fabian: check this sha vs unsafe-inline
-        
-        'sha256-d2j5lh8+FjSdzXASGbE5Cr7I5GeIfG9ywz71Ckbb5xI=' -->
-
 <head>
         <meta charset="utf-8" />
         <title>NotAlone</title>
 
+        <!-- Note: The SHA covers "this.media='all'" that is inserted in link with stylesheet -->
         <meta http-equiv="Content-Security-Policy"
-                content="default-src data: gap://* file://* https://ssl.gstatic.com 'self'; img-src 'self' app-file: https://ssl.gstatic.com data: https://csi.gstatic.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'unsafe-eval' 'unsafe-inline' 'self' https://google-analytics.com http://www.googletagmanager.com https://www.googletagmanager.com https://www.google-analytics.com/analytics.js https://apis.google.com/; connect-src 'self' app-file: https://*.google-analytics.com https://firebaseinstallations.googleapis.com https://firestore.googleapis.com/ https://fcm.googleapis.com/ https://sentry.io https://www.googleapis.com/ https://securetoken.googleapis.com/ https://fcmregistrations.googleapis.com https://identitytoolkit.googleapis.com https://firebase.googleapis.com; frame-src https://bonjour-notalone.firebaseapp.com/ https://bonjour-notalone-dev.firebaseapp.com https://apis.google.com/;">
+                content="default-src data: gap://* file://* https://ssl.gstatic.com 'self'; img-src 'self' app-file: https://ssl.gstatic.com data: https://csi.gstatic.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'unsafe-eval' 'unsafe-hashes' 'self' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://google-analytics.com http://www.googletagmanager.com https://www.googletagmanager.com https://www.google-analytics.com/analytics.js https://apis.google.com/; connect-src 'self' app-file: https://*.google-analytics.com https://firebaseinstallations.googleapis.com https://firestore.googleapis.com/ https://fcm.googleapis.com/ https://sentry.io https://www.googleapis.com/ https://securetoken.googleapis.com/ https://fcmregistrations.googleapis.com https://identitytoolkit.googleapis.com https://firebase.googleapis.com; frame-src https://bonjour-notalone.firebaseapp.com/ https://bonjour-notalone-dev.firebaseapp.com https://apis.google.com/;">
 
 
         <base href="/" />
