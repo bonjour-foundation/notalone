@@ -41,6 +41,9 @@ native-run ios --app platforms/ios/build/emulator/NotAlone.app
 native-run ios --app platforms/ios/build/emulator/NotAlone.app --target 0522FF7E-CFD7-4A1B-A951-B7AB18F607DF
 ```
 
+Run with debugging
+npm run start-dev
+
 ## License
 
 This application is released under the [GNU Affero General Public License](LICENSE). See [COPYING](./COPYING) for more details.

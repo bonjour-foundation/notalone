@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { IonDatetime, IonRouterOutlet, LoadingController } from '@ionic/angular';
 
+import { formatISO } from 'date-fns'
 import { Subscription } from 'rxjs';
 
 import { addMinutes, addYears, differenceInMinutes, endOfYear, startOfToday } from 'date-fns';
@@ -24,9 +25,6 @@ import { GoogleAnalyticsService } from '../../services/analytics/google-analytic
     styleUrls: ['./schedule.page.scss'],
 })
 export class SchedulePage implements OnInit, OnDestroy {
-
-    @ViewChild('day') private dayInput: IonDatetime;
-    @ViewChild('time') private timeInput: IonDatetime;
 
     private circleSubscription: Subscription;
 
@@ -137,6 +135,14 @@ export class SchedulePage implements OnInit, OnDestroy {
         });
     }
 
+    getNextReminderISO(): string {
+        return this.nextReminder ? this.formatISOWithLocalTimezone(this.nextReminder) : null
+    }
+
+    formatISOWithLocalTimezone(date: Date): string {
+        return formatISO(date)
+    }
+
     async save() {
         const loading: HTMLIonLoadingElement = await this.loadingController.create({});
 
@@ -150,15 +156,5 @@ export class SchedulePage implements OnInit, OnDestroy {
             this.errorService.error('ERROR.REMINDER');
             await loading.dismiss();
         }
-    }
-
-    async openDay() {
-        // TODO Fabian remove unneeded
-        // await this.dayInput.open();
-    }
-
-    async openTime() {
-        // TODO Fabian remove unneeded
-        // await this.timeInput.open();
     }
 }
